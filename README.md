@@ -2,6 +2,8 @@
 
 **LeadFlow CRM** is a premium, full-stack MERN (MongoDB, Express, React, Node.js) Lead Management CRM. Built with a professional MVC structure on the backend and a gorgeous, glassmorphic dark UI using React & Bootstrap 5 on the frontend.
 
+🔗 **[Live Demo Link](https://leadflow-crm.vercel.app) (Replace with your deployed URL)**
+
 ---
 
 ## Key Features
@@ -111,3 +113,38 @@ The Express server exposes the following RESTful API routes under `/api/leads`:
 | `/api/leads` | `POST` | Create a new lead (Validates name, email uniqueness, phone, company, status, notes) |
 | `/api/leads/:id` | `PUT` | Update details, status changes, or append notes to an existing lead |
 | `/api/leads/:id` | `DELETE` | Permanently remove a lead from the CRM pipeline |
+
+---
+
+## Deployment Guide (MERN Stack)
+
+Here is how you can deploy the LeadFlow CRM application live to production:
+
+### 1. Database (MongoDB Atlas)
+1. Register for a free account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
+2. Create a free shared cluster.
+3. In **Network Access**, allow access from anywhere (`0.0.0.0/0`) to enable connection from your cloud servers.
+4. Create a Database User and copy your Connection String (URI).
+
+### 2. Backend API Deployment (Render / Railway)
+1. Push your repository to GitHub.
+2. Sign in to [Render](https://render.com/) or [Railway](https://railway.app/).
+3. Connect your GitHub repository. Set the root project root folder or select `backend/` as the sub-directory.
+4. Set the **Build Command** to: `npm install`
+5. Set the **Start Command** to: `node server.js`
+6. Add the following Environment Variables in the hosting dashboard:
+   - `MONGO_URI`: `mongodb+srv://<username>:<password>@cluster0...` (your MongoDB Atlas URI)
+   - `PORT`: `5000` (or whatever the host provides dynamically)
+   - `NODE_ENV`: `production`
+
+### 3. Frontend App Deployment (Vercel / Netlify)
+1. Sign in to [Vercel](https://vercel.com/).
+2. Choose **Import Project** and connect your GitHub repository.
+3. Configure the project settings:
+   - **Framework Preset**: `Vite`
+   - **Root Directory**: `frontend`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+4. Add the following Environment Variable in the Vercel dashboard:
+   - `VITE_API_URL`: `https://your-backend-app.onrender.com/api/leads` (replace with your live deployed Render API URL).
+5. Click **Deploy**. Vercel will build and provide your Live Demo Link!
